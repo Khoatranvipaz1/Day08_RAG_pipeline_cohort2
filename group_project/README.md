@@ -1,5 +1,11 @@
 # Day 08 Group Project - Drug Law RAG
 
+## Student Information
+
+- Họ và tên: Trần Văn Khoa
+- MSV: `2A202600827`
+- Branch: `TVKhoa`
+
 ## Product
 
 The group artifact combines:
@@ -144,7 +150,7 @@ Before merging:
 
 | Member | Responsibility | Main files |
 |---|---|---|
-| Member 1 | Data and conversion | `task1`, `task2`, `task3` |
+| Trần Văn Khoa (`2A202600827`) | Data, retrieval, generation, chatbot and evaluation integration | `src/task1` to `src/task10`, `group_project/` |
 | Member 2 | Retrieval and reranking | `task4` to `task9` |
 | Member 3 | Generation and chatbot | `task10`, `group_project/app.py` |
 | Member 4 | Evaluation and reporting | `group_project/evaluation/` |
