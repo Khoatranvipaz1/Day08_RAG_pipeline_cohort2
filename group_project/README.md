@@ -1,156 +1,156 @@
-# Day 08 Group Project - Drug Law RAG
+# Bài Tập Nhóm - Search Engine / RAG Chatbot
 
-## Student Information
+## Mục tiêu
 
-- Họ và tên: Trần Văn Khoa
-- MSV: `2A202600827`
-- Branch: `TVKhoa`
+Nhóm xây dựng một RAG chatbot trả lời câu hỏi về pháp luật Việt Nam liên quan ma túy và các bài báo nghệ sĩ liên quan ma túy. Sản phẩm có giao diện chat, trả lời kèm citation, hiển thị source documents và có evaluation pipeline để so sánh cấu hình retrieval.
 
-## Product
+## Sản phẩm đã thực hiện
 
-The group artifact combines:
+- RAG chatbot bằng Streamlit: `app.py`
+- Tích hợp retrieval pipeline cá nhân: `src/task9_retrieval_pipeline.py`
+- Tích hợp generation có citation: `src/task10_generation.py`
+- Golden dataset 15 câu: `group_project/evaluation/golden_dataset.json`
+- Evaluation script: `group_project/evaluation/eval_pipeline.py`
+- Báo cáo kết quả: `group_project/evaluation/results.md`
 
-1. A Streamlit RAG chatbot with citations and source display.
-2. A deterministic evaluation pipeline with a 15-question golden dataset.
-3. A/B comparison between dense-only and hybrid retrieval.
-
-## Architecture
-
-```text
-Documents
-  -> Markdown standardization
-  -> Chunking
-  -> Local index / optional Weaviate
-
-Question
-  -> TF-IDF semantic retrieval
-  -> BM25 lexical retrieval
-  -> RRF fusion
-  -> Jina reranking when available
-  -> Context reordering and formatting
-  -> OpenAI generation when quota is available
-  -> Extractive grounded fallback
-  -> Answer + citations + sources
-```
-
-## Answer Policy
-
-The chatbot uses a grounded system prompt in `src/task10_generation.py`.
-
-Answer rules:
-
-- Answer only from retrieved context.
-- Cite factual claims with `[doc_id]`.
-- Do not guess missing facts or identify a person unless the context explicitly states it.
-- If evidence is insufficient, answer `I cannot verify this information`.
-- If the question is too broad or ambiguous, ask one short clarification question.
-
-Default answer format:
+## Kiến trúc hệ thống
 
 ```text
-Trả lời ngắn gọn: ...
-
-Bằng chứng:
-- [doc_id] source title
-
-Giới hạn: ...
+User
+  |
+  v
+Streamlit Chat UI (app.py)
+  |
+  v
+Generation with Citation (Task 10)
+  |
+  v
+Retrieval Pipeline (Task 9)
+  |
+  +--> Semantic Search (Task 5)
+  |
+  +--> Lexical Search / BM25 (Task 6)
+  |
+  +--> RRF Merge / Rerank (Task 7)
+  |
+  +--> PageIndex / Local Fallback (Task 8)
+  |
+  v
+Context Chunks + Source Metadata
+  |
+  v
+Answer + Citations + Source Display
 ```
 
-## API and Fallback Matrix
+## Chatbot
 
-| Component | Preferred | Fallback used by project |
-|---|---|---|
-| Embeddings | OpenAI embeddings | Jina embeddings, then local TF-IDF |
-| Vector store | Weaviate | Local `data/index/chunks.json` |
-| Reranking | Jina Reranker | Local query-term overlap |
-| Generation | OpenAI chat model | Extractive grounded answer |
-| PageIndex | PageIndex API | Local vectorless keyword fallback |
-| Evaluation | RAGAS/DeepEval | Deterministic heuristic metrics |
+Chatbot hỗ trợ:
 
-The project must not claim that a fallback is the external service itself.
+- hỏi đáp nhiều lượt bằng `st.session_state`
+- hiển thị câu trả lời có citation
+- hiển thị source, score và nội dung evidence
+- fallback extractive answer nếu chưa cấu hình `OPENAI_API_KEY`
 
-## Run
+Chạy chatbot:
 
-Install dependencies:
+```bash
+streamlit run app.py
+```
+
+Nếu dùng PowerShell và môi trường ảo:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv312\Scripts\activate
+streamlit run app.py
 ```
 
-Run individual tests:
+## Evaluation Pipeline
 
-```powershell
-.\.venv\Scripts\python.exe -m pytest tests -v
+Framework sử dụng: Lightweight Offline RAG Evaluator.
+
+Lý do: chạy được local, không cần API key, vẫn đo đủ 4 metric bắt buộc:
+
+- Faithfulness
+- Answer Relevance
+- Context Recall
+- Context Precision
+
+Hai cấu hình A/B:
+
+- Config A: hybrid semantic + lexical + RRF
+- Config B: lexical BM25 only
+
+Chạy evaluation:
+
+```bash
+python group_project/evaluation/eval_pipeline.py
 ```
 
-Run the chatbot:
-
-```powershell
-.\.venv\Scripts\python.exe -m streamlit run group_project\app.py
-```
-
-Run A/B evaluation:
-
-```powershell
-.\.venv\Scripts\python.exe group_project\evaluation\eval_pipeline.py
-```
-
-Outputs:
-
-- `group_project/evaluation/results.json`
-- `group_project/evaluation/results.md`
-
-## Evaluation
-
-Golden dataset:
-
-- 15 questions.
-- Legal, news, mixed, exact-term and abstention categories.
-- Includes expected answer and expected source IDs.
-
-Metrics:
-
-- Context Recall: proportion of expected sources retrieved.
-- Context Precision: proportion of retrieved chunks from expected sources.
-- Faithfulness: lexical support from retrieved context plus valid citation coverage.
-- Answer Relevance: token-level F1 against the expected answer.
-
-These are transparent heuristic metrics. They make local evaluation and CI
-possible without an LLM judge. RAGAS/DeepEval should be added when judge quota
-is available.
-
-## A/B Configurations
+Kết quả được ghi vào:
 
 ```text
-Config A: Dense-only TF-IDF
-Config B: TF-IDF + BM25 + RRF
+group_project/evaluation/results.md
 ```
 
-The expected benefit of Config B is better recall for exact identifiers,
-document numbers, names and legal terms.
+Nếu thư mục `group_project/evaluation` bị khóa quyền ghi trên Windows, script sẽ ghi fallback ra file `rag_evaluation_results.generated.md` ở root repo.
 
-## Merge Guidance
+## Golden Dataset
 
-No merge is needed when all work is developed on the current branch.
+File `group_project/evaluation/golden_dataset.json` có 15 câu hỏi bao phủ:
 
-Merge is needed only when another member has code on a different branch:
+- quy định pháp luật trong Luật Phòng, chống ma túy 2021
+- Nghị định 105/2021/NĐ-CP
+- Nghị định 116/2021/NĐ-CP
+- các bài báo về Chi Dân, An Tây, Trúc Phương, Nguyễn Công Trí, Hữu Tín, Lê Hằng
+- câu hỏi về kiến trúc RAG, fallback và citation
 
-```powershell
-git fetch
-git merge <member-branch>
+## Phân công công việc
+
+| Thành viên | MSSV | Nhiệm vụ | Trạng thái |
+|-----------|------|----------|------------|
+| Lê Quang Hưng | 2A202600891 | Tích hợp retrieval pipeline Task 9 | Hoàn thành |
+| Lê Văn Khoa | 2A202600603 | Golden dataset | Hoàn thành |
+| Nguyễn Phúc Hiếu | 2A202600747 | evaluation | Hoàn thành |
+| Nguyễn Văn Duy | 2A202600725 | Tích hợp generation/citation Task 10 | Hoàn thành |
+| Trần Văn Khoa | 2A202600827 | Xây dựng Streamlit chatbot UI | Hoàn thành |
+| Nghiêm Tuấn Linh | 2A2026897 |  report | Hoàn thành |
+
+## Hướng dẫn demo
+
+1. Cài dependencies:
+
+```bash
+pip install -r requirements.txt
 ```
 
-Before merging:
+2. Đảm bảo đã có dữ liệu markdown trong `data/standardized/`.
 
-1. Commit or stash the current work.
-2. Confirm ownership of conflicting files.
-3. Run individual tests and group evaluation after resolving conflicts.
+3. Chạy chatbot:
 
-## Work Allocation Template
+```bash
+streamlit run app.py
+```
 
-| Member | Responsibility | Main files |
-|---|---|---|
-| Trần Văn Khoa (`2A202600827`) | Data, retrieval, generation, chatbot and evaluation integration | `src/task1` to `src/task10`, `group_project/` |
-| Member 2 | Retrieval and reranking | `task4` to `task9` |
-| Member 3 | Generation and chatbot | `task10`, `group_project/app.py` |
-| Member 4 | Evaluation and reporting | `group_project/evaluation/` |
+4. Hỏi thử:
+
+```text
+Luật Phòng, chống ma túy 2021 quy định những hình thức cai nghiện nào?
+```
+
+```text
+Thông tin về Chi Dân liên quan ma túy xuất hiện trong nguồn nào?
+```
+
+5. Chạy evaluation:
+
+```bash
+python group_project/evaluation/eval_pipeline.py
+```
+
+6. Mở `group_project/evaluation/results.md` để trình bày bảng điểm, worst performers và đề xuất cải tiến.
+
+## Lưu ý kỹ thuật
+
+- Nếu chưa có `OPENAI_API_KEY`, chatbot vẫn tạo extractive answer từ retrieved chunks để demo không bị đứng.
+- Nếu thiếu `chromadb` hoặc vector store chưa build, evaluation script có local fallback để vẫn chạy A/B.
+- Khi cài đủ dependencies và build vector store, chạy lại evaluation để cập nhật điểm hybrid thật.
