@@ -14,7 +14,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from .task9_retrieval_pipeline import retrieve
+try:
+    from .task9_retrieval_pipeline import retrieve
+except ImportError:
+    from task9_retrieval_pipeline import retrieve
 
 
 # =============================================================================
@@ -88,7 +91,21 @@ def reorder_for_llm(chunks: list[dict]) -> list[dict]:
     #     reordered.append(chunks[i])  # Even positions go last (reversed)
     #
     # return reordered
-    raise NotImplementedError("Implement reorder_for_llm")
+
+    if len(chunks) <= 2:
+        return chunks
+
+    reordered = []
+
+    for i in range(0, len(chunks), 2):
+        reordered.append(chunks[i])
+
+    start = len(chunks) - 1 if len(chunks) % 2 == 0 else len(chunks) - 2
+
+    for i in range(start, 0, -2):
+        reordered.append(chunks[i])
+
+    return reordered
 
 
 # =============================================================================
@@ -117,7 +134,24 @@ def format_context(chunks: list[dict]) -> str:
     #         f"{chunk['content']}\n"
     #     )
     # return "\n---\n".join(context_parts)
-    raise NotImplementedError("Implement format_context")
+
+    context_parts = []
+
+    for i, chunk in enumerate(chunks, 1):
+        metadata = chunk.get("metadata", {}) or {}
+
+        source = metadata.get("source", f"Source {i}")
+        doc_type = metadata.get("type", metadata.get("doc_type", "unknown"))
+        chunk_index = metadata.get("chunk_index", "N/A")
+        score = chunk.get("score", 0.0)
+
+        context_parts.append(
+            f"[Document {i} | Source: {source} | Type: {doc_type} | "
+            f"Chunk: {chunk_index} | Score: {score:.3f}]\n"
+            f"{chunk.get('content', '')}\n"
+        )
+
+    return "\n---\n".join(context_parts)
 
 
 # =============================================================================
@@ -182,7 +216,63 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
     #     "sources": chunks,
     #     "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none"
     # }
-    raise NotImplementedError("Implement generate_with_citation")
+
+    # Step 1: Retrieve
+    chunks = retrieve(query, top_k=top_k)
+
+    if not chunks:
+        return {
+            "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+            "sources": [],
+            "retrieval_source": "none"
+        }
+
+    # Step 2: Reorder
+    reordered = reorder_for_llm(chunks)
+
+    # Step 3: Format context
+    context = format_context(reordered)
+
+    # Step 4: Build prompt
+    user_message = f"""Context:
+{context}
+
+---
+
+Question: {query}"""
+
+    # Step 5: Call LLM
+    api_key = os.getenv("OPENAI_API_KEY")
+
+    if not api_key:
+        return {
+            "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có vì chưa cấu hình OPENAI_API_KEY.",
+            "sources": chunks,
+            "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none"
+        }
+
+    from openai import OpenAI
+
+    client = OpenAI(api_key=api_key)
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_message}
+        ],
+        temperature=TEMPERATURE,
+        top_p=TOP_P,
+    )
+
+    answer = response.choices[0].message.content
+
+    # Step 6: Return
+    return {
+        "answer": answer,
+        "sources": chunks,
+        "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none"
+    }
 
 
 if __name__ == "__main__":

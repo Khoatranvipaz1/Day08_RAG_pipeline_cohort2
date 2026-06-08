@@ -1,0 +1,62 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments and package caches
+.venv/
+.venv*/
+venv/
+env/
+.uv-cache/
+pip-wheel-metadata/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs and runtime files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Local vector stores, model/index artifacts, and service state
+data/vectorstore/
+data/index/
+data/pageindex_state.json
+*.faiss
+*.index
+*.sqlite
+*.sqlite3
+chroma/
+chromadb/
+weaviate_data/
+
+# Downloaded ML model caches if created inside the repo
+.cache/
+models/
+model_cache/
+huggingface/
+
+# Browser/crawler runtime artifacts
+playwright-report/
+test-results/
+.crawl4ai/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

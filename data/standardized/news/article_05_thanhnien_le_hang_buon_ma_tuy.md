@@ -1,0 +1,14 @@
+# Nữ diễn viên Lệ Hằng bị bắt vì đi buôn ma túy
+
+**Source:** https://thanhnien.vn/nu-dien-vien-le-hang-bi-bat-vi-di-buon-ma-tuy-185230423181213443.htm
+**Crawled:** 2026-06-08
+
+---
+
+# Nữ diễn viên Lệ Hằng bị bắt vì đi buôn ma túy
+
+Thanh Niên đưa tin Công an quận Đống Đa, Hà Nội đã khởi tố vụ án và khởi tố bị can đối với Bùi Thị Lệ Hằng về tội mua bán trái phép chất ma túy. Bài viết nêu Lệ Hằng từng là diễn viên, được biết đến qua vai Hoài Thatcher trong phim “Xin hãy tin em”.
+
+Theo nguồn tin, vụ việc bị phát hiện khi lực lượng chức năng tuần tra và bắt quả tang hành vi mua bán trái phép chất ma túy tại khu vực phố Khâm Thiên. Tại hiện trường, công an thu giữ một lượng ma túy tổng hợp. Bị can được nêu là khai mua ma túy với mục đích bán lại kiếm lời.
+
+Nguồn này phù hợp cho truy vấn về tội mua bán trái phép chất ma túy, sự khác biệt với hành vi sử dụng/tàng trữ, và cách báo chí ghi nhận thông tin khởi tố vụ án, khởi tố bị can đối với một người từng hoạt động trong lĩnh vực diễn xuất.
