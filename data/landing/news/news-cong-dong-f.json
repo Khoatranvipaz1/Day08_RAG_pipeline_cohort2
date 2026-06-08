@@ -1,0 +1,7 @@
+{
+  "url": "https://example.com/news-f",
+  "title": "Chien dich truyen thong phong chong ma tuy tai cong dong",
+  "source": "BaoDemo",
+  "crawl_date": "2026-06-08T00:00:00Z",
+  "content": "Mot chien dich truyen thong tai cong dong tap trung vao nhan dien dau hieu rui ro, khuyen khich nguoi tre tim kiem ho tro som va tang phoi hop giua gia dinh, nha truong, dia phuong. Bai viet mau nay bo sung corpus cho lab RAG Day 08, giup kiem tra cau hoi ve phong ngua, giao duc cong dong va truyen thong co trach nhiem. He thong RAG can lay dung context, hien thi source va khong suy dien ngoai thong tin da crawl. Khi evaluation, bai nay co the dung de do context recall va answer relevance cho nhom cau hoi phong chong ma tuy tai cong dong."
+}

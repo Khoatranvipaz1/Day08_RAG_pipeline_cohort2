@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import math
 import re
+import unicodedata
 from pathlib import Path
 from typing import Iterable
 
@@ -58,6 +59,33 @@ LEGAL_DOCS = [
             "tàng trữ, vận chuyển, mua bán trái phép chất ma túy. Mức hình phạt phụ "
             "thuộc vào loại chất ma túy, khối lượng, hành vi phạm tội và các tình tiết "
             "tăng nặng hoặc giảm nhẹ."
+        ),
+    },
+    {
+        "filename": "tai-lieu-mau-danh-muc-chat-ma-tuy.pdf",
+        "title": "Tài liệu mẫu về danh mục chất ma túy",
+        "source": "LabDataset",
+        "year": "2024",
+        "content": (
+            "Tài liệu mẫu phục vụ lab RAG mô tả cách quản lý danh mục chất ma túy, "
+            "tiền chất và các chất hướng thần. Nội dung nhấn mạnh rằng câu trả lời "
+            "cần phân biệt dữ liệu mẫu với văn bản pháp luật chính thức. Khi người "
+            "dùng hỏi về danh mục chất, hệ thống cần retrieve đúng chunk có từ khóa "
+            "danh mục, tiền chất, kiểm soát đặc biệt và không suy đoán ngoài context. "
+            "Metadata source được đặt là LabDataset để minh bạch trong citation."
+        ),
+    },
+    {
+        "filename": "tai-lieu-mau-quy-trinh-cai-nghien.pdf",
+        "title": "Tài liệu mẫu về quy trình cai nghiện và hỗ trợ cộng đồng",
+        "source": "LabDataset",
+        "year": "2024",
+        "content": (
+            "Tài liệu mẫu phục vụ lab RAG mô tả các bước hỗ trợ người sử dụng trái "
+            "phép chất ma túy: tiếp nhận thông tin, đánh giá nhu cầu hỗ trợ, tư vấn, "
+            "kết nối dịch vụ y tế, theo dõi và tái hòa nhập cộng đồng. Nội dung dùng "
+            "để kiểm tra câu hỏi về hỗ trợ, tư vấn, cai nghiện tự nguyện và vai trò "
+            "của gia đình, nhà trường, địa phương trong phòng chống ma túy."
         ),
     },
 ]
@@ -119,6 +147,43 @@ NEWS_DOCS = [
         "content": (
             "Các chương trình giáo dục phòng chống ma túy tập trung vào nhận biết rủi ro, "
             "kỹ năng từ chối và tìm kiếm hỗ trợ từ gia đình, nhà trường, cơ quan chức năng."
+        ),
+    },
+    {
+        "filename": "news-cong-dong-f.json",
+        "title": "Chiến dịch truyền thông phòng chống ma túy tại cộng đồng",
+        "source": "BaoDemo",
+        "year": "2024",
+        "url": "https://example.com/news-f",
+        "content": (
+            "Một chiến dịch truyền thông tại cộng đồng tập trung vào nhận diện dấu hiệu "
+            "rủi ro, khuyến khích người trẻ tìm kiếm hỗ trợ sớm và tăng phối hợp giữa "
+            "gia đình, nhà trường, địa phương. Bài viết mẫu dùng để kiểm tra retrieval "
+            "cho nhóm câu hỏi về phòng ngừa và truyền thông."
+        ),
+    },
+    {
+        "filename": "news-chinh-sach-g.json",
+        "title": "Chuyên gia khuyến nghị không suy đoán khi đưa tin về ma túy",
+        "source": "BaoDemo",
+        "year": "2025",
+        "url": "https://example.com/news-g",
+        "content": (
+            "Chuyên gia truyền thông khuyến nghị các nền tảng tin tức chỉ công bố thông tin "
+            "đã được xác minh, tránh nêu danh tính hoặc dữ liệu cá nhân khi không có căn cứ. "
+            "Nội dung này hỗ trợ kiểm tra grounding, abstention và bảo vệ thông tin nhạy cảm."
+        ),
+    },
+    {
+        "filename": "news-y-te-h.json",
+        "title": "Hỗ trợ y tế và tâm lý cho người cần cai nghiện",
+        "source": "BaoDemo",
+        "year": "2024",
+        "url": "https://example.com/news-h",
+        "content": (
+            "Các cơ sở hỗ trợ y tế và tâm lý có thể giúp người cần cai nghiện đánh giá rủi ro, "
+            "lập kế hoạch điều trị, theo dõi sức khỏe và kết nối với dịch vụ xã hội. Bài viết "
+            "mẫu dùng cho câu hỏi về hỗ trợ cộng đồng, cai nghiện tự nguyện và tái hòa nhập."
         ),
     },
 ]
@@ -189,7 +254,13 @@ def standardize_landing_data(force: bool = False) -> list[Path]:
 
 
 def tokenize(text: str) -> list[str]:
-    return re.findall(r"[\wÀ-ỹ]+", text.lower(), flags=re.UNICODE)
+    text = strip_accents(text.lower())
+    return re.findall(r"[\w]+", text, flags=re.UNICODE)
+
+
+def strip_accents(text: str) -> str:
+    normalized = unicodedata.normalize("NFD", text)
+    return "".join(ch for ch in normalized if unicodedata.category(ch) != "Mn")
 
 
 def load_markdown_documents() -> list[dict]:

@@ -984,3 +984,16 @@ Faithfulness thấp -> sửa Generation/Grounding
 Answer Relevance thấp -> sửa Augmentation/Prompt/Query understanding
 Context Precision thấp -> sửa Retrieval noise/Rerank
 ```
+
+---
+
+## 16. Trạng Thái Hoàn Thành Trong Repo Này
+
+- Cá nhân Task 1-10: hoàn thành.
+- Pytest cá nhân: `33 passed, 2 skipped, 0 failed`.
+- Hai skipped là optional integration checks cho PageIndex thật và generation API dạng dict.
+- Group UI: `group_project/app.py`, Streamlit health đã trả `200 ok`.
+- Group evaluation: `golden_dataset.json` có 15 câu, gồm legal/news/mixed/exact_term/abstention.
+- A/B evaluation: Dense-only vs Hybrid BM25 + TF-IDF + RRF đã chạy và sinh `results.md` + `results.json`.
+- API đã kiểm tra: OpenAI key hợp lệ nhưng embedding quota có thể hết; Jina hoạt động; Weaviate ready và đã smoke test import/search được.
+- Secrets: `.env` đã được ignore; `.env.example` là file mẫu không chứa key thật.

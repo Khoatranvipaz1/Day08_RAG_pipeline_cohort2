@@ -27,6 +27,29 @@ Question
   -> Answer + citations + sources
 ```
 
+## Answer Policy
+
+The chatbot uses a grounded system prompt in `src/task10_generation.py`.
+
+Answer rules:
+
+- Answer only from retrieved context.
+- Cite factual claims with `[doc_id]`.
+- Do not guess missing facts or identify a person unless the context explicitly states it.
+- If evidence is insufficient, answer `I cannot verify this information`.
+- If the question is too broad or ambiguous, ask one short clarification question.
+
+Default answer format:
+
+```text
+Trả lời ngắn gọn: ...
+
+Bằng chứng:
+- [doc_id] source title
+
+Giới hạn: ...
+```
+
 ## API and Fallback Matrix
 
 | Component | Preferred | Fallback used by project |

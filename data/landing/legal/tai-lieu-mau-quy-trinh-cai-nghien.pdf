@@ -1,0 +1,9 @@
+Tai lieu mau ve quy trinh cai nghien tu nguyen, tu van va ho tro cong dong phuc vu lab RAG Day 08.
+
+Noi dung nay khong thay the van ban phap luat chinh thuc. File duoc tao de bo sung corpus cho cac cau hoi ve ho tro nguoi su dung trai phep chat ma tuy, cai nghien tu nguyen, ket noi y te, tham van tam ly, theo doi sau can thiep va tai hoa nhap cong dong. Day la nhom cau hoi thuong can retrieval theo ngu nghia, khong chi exact keyword.
+
+Quy trinh mau gom cac buoc: tiep nhan thong tin, danh gia nhu cau ho tro, tu van ban dau, ket noi dich vu y te, lap ke hoach theo doi, huy dong gia dinh va dia phuong, ho tro tai hoa nhap cong dong. Neu context khong neu ro dia chi co so ho tro, muc phi hoac thoi han dieu tri, assistant khong duoc tu bo sung.
+
+Trong pipeline, tai lieu nay giup test query expansion voi cac tu dong nghia nhu "ho tro", "tu van", "cai nghien", "tai hoa nhap", "y te", "tam ly". BM25 bat exact term, TF-IDF bat semantic fallback, RRF hop nhat ket qua va Jina reranker co the sap xep lai theo muc do lien quan. Cau tra loi phai co citation va phai abstain khi thieu evidence.
+
+Noi dung bo sung de dam bao kich thuoc file hop le: cai nghien tu nguyen, ho tro cong dong, nguoi su dung trai phep chat ma tuy, gia dinh, nha truong, dia phuong, co quan chuc nang, y te, tam ly, evidence, citation, grounded generation, RAGAS, context recall, faithfulness, answer relevance, context precision.
