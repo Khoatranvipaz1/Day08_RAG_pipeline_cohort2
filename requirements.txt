@@ -1,39 +1,51 @@
+# Day 08 RAG Lab - lightweight Windows-friendly requirements
+#
+# This file intentionally avoids heavy/native packages that often fail on
+# fresh Windows/Python 3.14 environments, such as crawl4ai -> lxml builds,
+# local torch/sentence-transformers stacks, PageIndex, and full eval suites.
+# Install the optional packages at the bottom only when you really need them.
+
 # Core
 python-dotenv>=1.0.0
 requests>=2.31.0
 
-# Task 2 - Crawling
-crawl4ai>=0.3.0
+# Task 2 - Crawling alternative
+# Use requests + BeautifulSoup instead of crawl4ai for a lighter setup.
+beautifulsoup4>=4.12.0
+html5lib>=1.1
 
 # Task 3 - Document conversion
 markitdown>=0.1.0
 
-# Task 4 - Chunking & Indexing
+# Task 4 - Chunking & lightweight local indexing
 langchain-text-splitters>=0.2.0
-sentence-transformers>=2.2.0
-weaviate-client>=4.5.0
-# chromadb>=0.4.0        # Alternative
-# faiss-cpu>=1.7.4       # Alternative
+numpy>=1.26.0
+scikit-learn>=1.4.0
 
-# Task 6 - BM25
+# Task 6 - BM25 lexical search
 rank-bm25>=0.2.2
 
-# Task 7 - Reranking (choose one)
-# transformers>=4.40.0   # For local reranker models
-
-# Task 8 - PageIndex
-pageindex>=0.1.0
-
-# Task 10 - Generation
+# Task 10 - Generation / embeddings via API
 openai>=1.30.0
-# google-generativeai>=0.5.0  # Alternative: Gemini
 
 # Group project - UI
 streamlit>=1.35.0
-# gradio>=4.30.0         # Alternative
-# chainlit>=1.0.0        # Alternative for chatbot
 
-# Group project - Evaluation (choose one)
-deepeval>=1.0.0
-# ragas>=0.1.0           # Alternative
-# trulens>=1.0.0         # Alternative
+# Group project - lightweight reporting/evaluation helpers
+pandas>=2.2.0
+
+# Tests
+pytest>=8.0.0
+
+# Optional advanced packages - install separately if needed:
+# crawl4ai>=0.3.0                 # Full web crawler, may require Playwright/lxml setup
+# sentence-transformers>=2.2.0    # Local embedding models, pulls torch
+# weaviate-client>=4.5.0          # Vector DB client
+# chromadb>=0.4.0                 # Alternative vector store
+# faiss-cpu>=1.7.4                # Alternative local vector store
+# pageindex>=0.1.0                # Vectorless fallback
+# deepeval>=1.0.0                 # RAG eval framework
+# ragas>=0.1.0                    # Alternative RAG eval framework
+# trulens>=1.0.0                  # Alternative RAG eval dashboard
+# gradio>=4.30.0                  # Alternative UI
+# chainlit>=1.0.0                 # Alternative chatbot UI

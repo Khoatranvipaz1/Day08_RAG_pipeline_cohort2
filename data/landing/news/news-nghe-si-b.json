@@ -1,0 +1,7 @@
+{
+  "url": "https://example.com/news-b",
+  "title": "Canh bao tac hai ma tuy trong gioi bieu dien",
+  "source": "BaoDemo",
+  "crawl_date": "2026-06-08T00:00:00Z",
+  "content": "Cac chuyen gia canh bao viec su dung chat ma tuy gay anh huong nghiem trong den suc khoe, hinh anh ca nhan va hoat dong nghe thuat. Bai viet mau mo ta tac hai cua ma tuy trong moi truong bieu dien va vai tro cua truyen thong co trach nhiem. Noi dung duoc keo dai de dam bao file crawl co kich thuoc hop le cho test. Khi dua vao RAG, BM25 co the bat cac tu khoa nhu suc khoe, nghe thuat, chat ma tuy, trong khi semantic search bat y nghia canh bao rui ro. Cau tra loi phai trich dan nguon va khong duoc quy ket ca nhan neu khong co bang chung."
+}

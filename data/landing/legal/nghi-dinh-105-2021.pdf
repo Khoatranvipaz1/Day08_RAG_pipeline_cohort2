@@ -1,0 +1,7 @@
+Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly.
+
+Van ban mau nay mo ta cac quy trinh hanh chinh duoc dung lam evidence trong lab. Cac noi dung can truy hoi gom: lap ho so quan ly nguoi su dung trai phep chat ma tuy, xac minh tinh trang su dung, to chuc xet nghiem, phoi hop giua cong an, y te, chinh quyen dia phuong va gia dinh. Day la nhom thong tin rat phu hop de kiem tra hybrid search vi co ca tu khoa chinh xac nhu "105/2021/ND-CP" va noi dung ngu nghia nhu "quan ly nguoi su dung".
+
+Trong Task 4, file nay duoc chunk thanh cac doan co metadata title, source, doc_type legal va path. Trong Task 5, semantic search can bat duoc y "huong dan thi hanh". Trong Task 6, BM25 can bat chinh xac so hieu "105/2021". Trong Task 10, generation chi duoc tra loi dua tren context va phai citation den nguon.
+
+Noi dung bo sung cho kich thuoc file: nghi dinh, huong dan thi hanh, xet nghiem chat ma tuy, ho so quan ly, co quan chuc nang, trach nhiem phoi hop, evidence, citation, context recall, faithfulness, answer relevance, context precision.

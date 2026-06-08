@@ -1,0 +1,7 @@
+{
+  "url": "https://example.com/news-d",
+  "title": "Co quan chuc nang xu ly hanh vi su dung ma tuy",
+  "source": "BaoDemo",
+  "crawl_date": "2026-06-08T00:00:00Z",
+  "content": "Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. Bai viet mau lien ket giua tin tuc va phap luat, giup kiem tra truy van mixed domain trong RAG. Retriever can lay duoc ca chunk tin tuc va chunk phap luat neu cau hoi yeu cau so sanh. Augmentation phai dong goi context ro rang de generator khong nham lan giua thong tin bao chi va quy dinh phap ly. Neu evidence thieu, cau tra loi phai abstain."
+}

@@ -1,0 +1,534 @@
+[
+  {
+    "name": "Dense-only",
+    "summary": {
+      "context_recall": 0.8666666666666667,
+      "context_precision": 0.39999999999999997,
+      "faithfulness": 0.9911111111111112,
+      "answer_relevance": 0.17381541729806113
+    },
+    "rows": [
+      {
+        "id": "legal_01",
+        "question": "Luật Phòng, chống ma túy 2021 quy định những nhóm trách nhiệm nào?",
+        "category": "legal",
+        "answer": "# Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Bo luat Hinh su 2015 - Cac toi pham ve ma tuy - Source: QuocHoi - Year: 2015 - Type: legal Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung. [bo-luat-hinh-su-2015-chuong-ma-tuy]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.07920792079207921
+        }
+      },
+      {
+        "id": "legal_02",
+        "question": "Nghị định 105/2021/NĐ-CP hướng dẫn nội dung gì?",
+        "category": "legal",
+        "answer": "# Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Co quan chuc nang xu ly hanh vi su dung ma tuy - Source: BaoDemo - Year: 2021 - Type: news Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. [news-nghe-si-d]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-d",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.02127659574468085
+        }
+      },
+      {
+        "id": "legal_03",
+        "question": "Bộ luật Hình sự đề cập các hành vi nào liên quan đến ma túy?",
+        "category": "legal",
+        "answer": "# Co quan chuc nang xu ly hanh vi su dung ma tuy - Source: BaoDemo - Year: 2021 - Type: news Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. [news-nghe-si-d] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a",
+          "news-nghe-si-d"
+        ],
+        "metrics": {
+          "context_recall": 0.0,
+          "context_precision": 0.0,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.04597701149425287
+        }
+      },
+      {
+        "id": "legal_04",
+        "question": "Văn bản nào quy định về xét nghiệm chất ma túy và hồ sơ quản lý?",
+        "category": "legal",
+        "answer": "# Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Bo luat Hinh su 2015 - Cac toi pham ve ma tuy - Source: QuocHoi - Year: 2015 - Type: legal Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung. [bo-luat-hinh-su-2015-chuong-ma-tuy]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.11363636363636363
+        }
+      },
+      {
+        "id": "legal_05",
+        "question": "Hình phạt tội phạm ma túy phụ thuộc vào những yếu tố nào?",
+        "category": "legal",
+        "answer": "# Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Bo luat Hinh su 2015 - Cac toi pham ve ma tuy - Source: QuocHoi - Year: 2015 - Type: legal Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung. [bo-luat-hinh-su-2015-chuong-ma-tuy]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.02127659574468085
+        }
+      },
+      {
+        "id": "news_01",
+        "question": "Bài báo về nghệ sĩ A lưu ý điều gì khi đưa thông tin?",
+        "category": "news",
+        "answer": "# Vu viec ma tuy va trach nhiem truyen thong - Source: BaoDemo - Year: 2022 - Type: news Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. [news-nghe-si-c] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] Thong tin can duoc kiem chung tu nguon chinh thuc. [news-nghe-si-a]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "news-nghe-si-a",
+          "news-nghe-si-c"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 0.9333333333333333,
+          "answer_relevance": 0.024691358024691357
+        }
+      },
+      {
+        "id": "news_02",
+        "question": "Ma túy gây ảnh hưởng gì tới người hoạt động nghệ thuật?",
+        "category": "news",
+        "answer": "# Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Bo luat Hinh su 2015 - Cac toi pham ve ma tuy - Source: QuocHoi - Year: 2015 - Type: legal Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung. [bo-luat-hinh-su-2015-chuong-ma-tuy]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 0.0,
+          "context_precision": 0.0,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.022988505747126433
+        }
+      },
+      {
+        "id": "news_03",
+        "question": "Báo chí cần làm gì khi đưa tin về vụ việc ma túy?",
+        "category": "news",
+        "answer": "# Vu viec ma tuy va trach nhiem truyen thong - Source: BaoDemo - Year: 2022 - Type: news Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. [news-nghe-si-c] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] Thong tin can duoc kiem chung tu nguon chinh thuc. [news-nghe-si-a]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a",
+          "news-nghe-si-c"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 0.9333333333333333,
+          "answer_relevance": 0.05128205128205128
+        }
+      },
+      {
+        "id": "news_04",
+        "question": "Hành vi sử dụng trái phép chất ma túy có thể được xử lý thế nào theo bài báo?",
+        "category": "news",
+        "answer": "# Co quan chuc nang xu ly hanh vi su dung ma tuy - Source: BaoDemo - Year: 2021 - Type: news Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. [news-nghe-si-d] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a",
+          "news-nghe-si-d"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.0
+        }
+      },
+      {
+        "id": "news_05",
+        "question": "Giáo dục phòng chống ma túy cho người trẻ tập trung vào kỹ năng nào?",
+        "category": "news",
+        "answer": "# Giao duc phong chong ma tuy cho nguoi tre - Source: BaoDemo - Year: 2024 - Type: news Chuong trinh giao duc phong chong ma tuy tap trung vao nhan biet rui ro, ky nang tu choi va tim kiem ho tro tu gia dinh, nha truong va co quan chuc nang. [news-nghe-si-e] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-e",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.07547169811320756
+        }
+      },
+      {
+        "id": "mixed_01",
+        "question": "Tại sao hệ thống cần kết hợp BM25 với tìm kiếm ngữ nghĩa khi hỏi về Nghị định 105/2021?",
+        "category": "mixed",
+        "answer": "# Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Vu viec ma tuy va trach nhiem truyen thong - Source: BaoDemo - Year: 2022 - Type: news Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. [news-nghe-si-c]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-c",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.05825242718446603
+        }
+      },
+      {
+        "id": "mixed_02",
+        "question": "Nguồn pháp luật và báo chí cùng nhấn mạnh nguyên tắc nào khi trả lời về vụ việc ma túy?",
+        "category": "mixed",
+        "answer": "# Vu viec ma tuy va trach nhiem truyen thong - Source: BaoDemo - Year: 2022 - Type: news Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. [news-nghe-si-c] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a",
+          "news-nghe-si-c"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.6666666666666666,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.020000000000000004
+        }
+      },
+      {
+        "id": "exact_01",
+        "question": "Tìm tài liệu có số hiệu 105/2021/NĐ-CP.",
+        "category": "exact_term",
+        "answer": "# Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Co quan chuc nang xu ly hanh vi su dung ma tuy - Source: BaoDemo - Year: 2021 - Type: news Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. [news-nghe-si-d]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-d",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.07317073170731707
+        }
+      },
+      {
+        "id": "abstain_01",
+        "question": "Mức án chính xác của nghệ sĩ A là bao nhiêu năm tù?",
+        "category": "abstention",
+        "answer": "I cannot verify this information",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "news-nghe-si-b",
+          "news-nghe-si-c"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 1.0,
+          "faithfulness": 1.0,
+          "answer_relevance": 1.0
+        }
+      },
+      {
+        "id": "abstain_02",
+        "question": "Địa chỉ nhà riêng của nghệ sĩ A là gì?",
+        "category": "abstention",
+        "answer": "I cannot verify this information",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 1.0,
+          "faithfulness": 1.0,
+          "answer_relevance": 1.0
+        }
+      }
+    ]
+  },
+  {
+    "name": "Hybrid BM25 + TF-IDF + RRF",
+    "summary": {
+      "context_recall": 0.8666666666666667,
+      "context_precision": 0.39999999999999997,
+      "faithfulness": 0.9911111111111112,
+      "answer_relevance": 0.17381541729806113
+    },
+    "rows": [
+      {
+        "id": "legal_01",
+        "question": "Luật Phòng, chống ma túy 2021 quy định những nhóm trách nhiệm nào?",
+        "category": "legal",
+        "answer": "# Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Bo luat Hinh su 2015 - Cac toi pham ve ma tuy - Source: QuocHoi - Year: 2015 - Type: legal Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung. [bo-luat-hinh-su-2015-chuong-ma-tuy]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.07920792079207921
+        }
+      },
+      {
+        "id": "legal_02",
+        "question": "Nghị định 105/2021/NĐ-CP hướng dẫn nội dung gì?",
+        "category": "legal",
+        "answer": "# Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Co quan chuc nang xu ly hanh vi su dung ma tuy - Source: BaoDemo - Year: 2021 - Type: news Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. [news-nghe-si-d]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-d",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.02127659574468085
+        }
+      },
+      {
+        "id": "legal_03",
+        "question": "Bộ luật Hình sự đề cập các hành vi nào liên quan đến ma túy?",
+        "category": "legal",
+        "answer": "# Co quan chuc nang xu ly hanh vi su dung ma tuy - Source: BaoDemo - Year: 2021 - Type: news Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. [news-nghe-si-d] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a",
+          "news-nghe-si-d"
+        ],
+        "metrics": {
+          "context_recall": 0.0,
+          "context_precision": 0.0,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.04597701149425287
+        }
+      },
+      {
+        "id": "legal_04",
+        "question": "Văn bản nào quy định về xét nghiệm chất ma túy và hồ sơ quản lý?",
+        "category": "legal",
+        "answer": "# Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Bo luat Hinh su 2015 - Cac toi pham ve ma tuy - Source: QuocHoi - Year: 2015 - Type: legal Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung. [bo-luat-hinh-su-2015-chuong-ma-tuy]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.11363636363636363
+        }
+      },
+      {
+        "id": "legal_05",
+        "question": "Hình phạt tội phạm ma túy phụ thuộc vào những yếu tố nào?",
+        "category": "legal",
+        "answer": "# Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Bo luat Hinh su 2015 - Cac toi pham ve ma tuy - Source: QuocHoi - Year: 2015 - Type: legal Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung. [bo-luat-hinh-su-2015-chuong-ma-tuy]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.02127659574468085
+        }
+      },
+      {
+        "id": "news_01",
+        "question": "Bài báo về nghệ sĩ A lưu ý điều gì khi đưa thông tin?",
+        "category": "news",
+        "answer": "# Vu viec ma tuy va trach nhiem truyen thong - Source: BaoDemo - Year: 2022 - Type: news Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. [news-nghe-si-c] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] Thong tin can duoc kiem chung tu nguon chinh thuc. [news-nghe-si-a]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "news-nghe-si-a",
+          "news-nghe-si-c"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 0.9333333333333333,
+          "answer_relevance": 0.024691358024691357
+        }
+      },
+      {
+        "id": "news_02",
+        "question": "Ma túy gây ảnh hưởng gì tới người hoạt động nghệ thuật?",
+        "category": "news",
+        "answer": "# Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Bo luat Hinh su 2015 - Cac toi pham ve ma tuy - Source: QuocHoi - Year: 2015 - Type: legal Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung. [bo-luat-hinh-su-2015-chuong-ma-tuy]",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 0.0,
+          "context_precision": 0.0,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.022988505747126433
+        }
+      },
+      {
+        "id": "news_03",
+        "question": "Báo chí cần làm gì khi đưa tin về vụ việc ma túy?",
+        "category": "news",
+        "answer": "# Vu viec ma tuy va trach nhiem truyen thong - Source: BaoDemo - Year: 2022 - Type: news Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. [news-nghe-si-c] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] Thong tin can duoc kiem chung tu nguon chinh thuc. [news-nghe-si-a]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a",
+          "news-nghe-si-c"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 0.9333333333333333,
+          "answer_relevance": 0.05128205128205128
+        }
+      },
+      {
+        "id": "news_04",
+        "question": "Hành vi sử dụng trái phép chất ma túy có thể được xử lý thế nào theo bài báo?",
+        "category": "news",
+        "answer": "# Co quan chuc nang xu ly hanh vi su dung ma tuy - Source: BaoDemo - Year: 2021 - Type: news Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. [news-nghe-si-d] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a",
+          "news-nghe-si-d"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.0
+        }
+      },
+      {
+        "id": "news_05",
+        "question": "Giáo dục phòng chống ma túy cho người trẻ tập trung vào kỹ năng nào?",
+        "category": "news",
+        "answer": "# Giao duc phong chong ma tuy cho nguoi tre - Source: BaoDemo - Year: 2024 - Type: news Chuong trinh giao duc phong chong ma tuy tap trung vao nhan biet rui ro, ky nang tu choi va tim kiem ho tro tu gia dinh, nha truong va co quan chuc nang. [news-nghe-si-e] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-e",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.07547169811320756
+        }
+      },
+      {
+        "id": "mixed_01",
+        "question": "Tại sao hệ thống cần kết hợp BM25 với tìm kiếm ngữ nghĩa khi hỏi về Nghị định 105/2021?",
+        "category": "mixed",
+        "answer": "# Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Vu viec ma tuy va trach nhiem truyen thong - Source: BaoDemo - Year: 2022 - Type: news Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. [news-nghe-si-c] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-c",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.05825242718446603
+        }
+      },
+      {
+        "id": "mixed_02",
+        "question": "Nguồn pháp luật và báo chí cùng nhấn mạnh nguyên tắc nào khi trả lời về vụ việc ma túy?",
+        "category": "mixed",
+        "answer": "# Vu viec ma tuy va trach nhiem truyen thong - Source: BaoDemo - Year: 2022 - Type: news Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. [news-nghe-si-c] # Nghe si A bi dieu tra vi lien quan ma tuy - Source: BaoDemo - Year: 2024 - Type: news Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. [news-nghe-si-a] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a",
+          "news-nghe-si-c"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.6666666666666666,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.020000000000000004
+        }
+      },
+      {
+        "id": "exact_01",
+        "question": "Tìm tài liệu có số hiệu 105/2021/NĐ-CP.",
+        "category": "exact_term",
+        "answer": "# Nghi dinh 105/2021/ND-CP - Source: ChinhPhu - Year: 2021 - Type: legal Nghi dinh 105/2021/ND-CP huong dan thi hanh Luat Phong, chong ma tuy, quy dinh ve quan ly nguoi su dung trai phep chat ma tuy, xet nghiem chat ma tuy va ho so quan ly. [nghi-dinh-105-2021] # Luat Phong, chong ma tuy 2021 - Source: QuocHoi - Year: 2021 - Type: legal Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy. [luat-phong-chong-ma-tuy-2021] # Co quan chuc nang xu ly hanh vi su dung ma tuy - Source: BaoDemo - Year: 2021 - Type: news Hanh vi su dung trai phep chat ma tuy co the bi xu ly hanh chinh hoac ap dung bien phap quan ly tuy truong hop cu the. [news-nghe-si-d]",
+        "retrieved_sources": [
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-d",
+          "nghi-dinh-105-2021"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 0.3333333333333333,
+          "faithfulness": 1.0,
+          "answer_relevance": 0.07317073170731707
+        }
+      },
+      {
+        "id": "abstain_01",
+        "question": "Mức án chính xác của nghệ sĩ A là bao nhiêu năm tù?",
+        "category": "abstention",
+        "answer": "I cannot verify this information",
+        "retrieved_sources": [
+          "news-nghe-si-a",
+          "news-nghe-si-b",
+          "news-nghe-si-c"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 1.0,
+          "faithfulness": 1.0,
+          "answer_relevance": 1.0
+        }
+      },
+      {
+        "id": "abstain_02",
+        "question": "Địa chỉ nhà riêng của nghệ sĩ A là gì?",
+        "category": "abstention",
+        "answer": "I cannot verify this information",
+        "retrieved_sources": [
+          "bo-luat-hinh-su-2015-chuong-ma-tuy",
+          "luat-phong-chong-ma-tuy-2021",
+          "news-nghe-si-a"
+        ],
+        "metrics": {
+          "context_recall": 1.0,
+          "context_precision": 1.0,
+          "faithfulness": 1.0,
+          "answer_relevance": 1.0
+        }
+      }
+    ]
+  }
+]

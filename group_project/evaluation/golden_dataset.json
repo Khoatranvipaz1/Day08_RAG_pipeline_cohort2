@@ -1,17 +1,137 @@
 [
   {
-    "question": "Hình phạt cho tội tàng trữ trái phép chất ma tuý theo Điều 249 Bộ luật Hình sự?",
-    "expected_answer": "Phạt tù từ 1 đến 5 năm đối với trường hợp tàng trữ từ 1g đến dưới 5g heroin hoặc cocaine, hoặc chất ma tuý khác với khối lượng tương đương.",
-    "expected_context": "Bộ luật Hình sự 2015, Điều 249"
+    "id": "legal_01",
+    "question": "Luật Phòng, chống ma túy 2021 quy định những nhóm trách nhiệm nào?",
+    "expected_answer": "Luật quy định về phòng ngừa, đấu tranh với tội phạm ma túy, quản lý người sử dụng trái phép chất ma túy và kiểm soát hoạt động hợp pháp liên quan đến ma túy.",
+    "expected_context": ["luat-phong-chong-ma-tuy-2021"],
+    "category": "legal",
+    "difficulty": "easy",
+    "should_abstain": false
   },
   {
-    "question": "Luật Phòng chống ma tuý 2021 quy định những hình thức cai nghiện nào?",
-    "expected_answer": "Cai nghiện tự nguyện tại gia đình, cai nghiện tự nguyện tại cộng đồng, cai nghiện tự nguyện tại cơ sở cai nghiện, và cai nghiện bắt buộc tại cơ sở cai nghiện.",
-    "expected_context": "Luật Phòng chống ma tuý 2021, Chương V"
+    "id": "legal_02",
+    "question": "Nghị định 105/2021/NĐ-CP hướng dẫn nội dung gì?",
+    "expected_answer": "Nghị định hướng dẫn Luật Phòng, chống ma túy, gồm quản lý người sử dụng trái phép chất ma túy, xét nghiệm và hồ sơ quản lý.",
+    "expected_context": ["nghi-dinh-105-2021"],
+    "category": "legal",
+    "difficulty": "easy",
+    "should_abstain": false
   },
   {
-    "question": "Danh mục các chất ma tuý thuộc nhóm I theo quy định pháp luật Việt Nam gồm những chất nào?",
-    "expected_answer": "Nhóm I gồm các chất ma tuý tuyệt đối cấm sử dụng trong y học và đời sống, bao gồm heroin, cocaine, methamphetamine, MDMA (ecstasy), cannabis (cần sa), và các chất tương tự.",
-    "expected_context": "Nghị định 57/2022/NĐ-CP, Phụ lục I"
+    "id": "legal_03",
+    "question": "Bộ luật Hình sự đề cập các hành vi nào liên quan đến ma túy?",
+    "expected_answer": "Tài liệu đề cập các hành vi tàng trữ, vận chuyển và mua bán trái phép chất ma túy.",
+    "expected_context": ["bo-luat-hinh-su-2015-chuong-ma-tuy"],
+    "category": "legal",
+    "difficulty": "easy",
+    "should_abstain": false
+  },
+  {
+    "id": "legal_04",
+    "question": "Văn bản nào quy định về xét nghiệm chất ma túy và hồ sơ quản lý?",
+    "expected_answer": "Nghị định 105/2021/NĐ-CP quy định về xét nghiệm chất ma túy và hồ sơ quản lý.",
+    "expected_context": ["nghi-dinh-105-2021"],
+    "category": "legal",
+    "difficulty": "medium",
+    "should_abstain": false
+  },
+  {
+    "id": "legal_05",
+    "question": "Hình phạt tội phạm ma túy phụ thuộc vào những yếu tố nào?",
+    "expected_answer": "Hình phạt phụ thuộc vào loại chất ma túy, khối lượng, hành vi phạm tội và các tình tiết tăng nặng hoặc giảm nhẹ.",
+    "expected_context": ["bo-luat-hinh-su-2015-chuong-ma-tuy"],
+    "category": "legal",
+    "difficulty": "medium",
+    "should_abstain": false
+  },
+  {
+    "id": "news_01",
+    "question": "Bài báo về nghệ sĩ A lưu ý điều gì khi đưa thông tin?",
+    "expected_answer": "Thông tin phải được kiểm chứng từ nguồn chính thức và không nên suy đoán ngoài dữ kiện đã công bố.",
+    "expected_context": ["news-nghe-si-a"],
+    "category": "news",
+    "difficulty": "easy",
+    "should_abstain": false
+  },
+  {
+    "id": "news_02",
+    "question": "Ma túy gây ảnh hưởng gì tới người hoạt động nghệ thuật?",
+    "expected_answer": "Ma túy ảnh hưởng nghiêm trọng tới sức khỏe, hình ảnh cá nhân và hoạt động nghệ thuật.",
+    "expected_context": ["news-nghe-si-b"],
+    "category": "news",
+    "difficulty": "easy",
+    "should_abstain": false
+  },
+  {
+    "id": "news_03",
+    "question": "Báo chí cần làm gì khi đưa tin về vụ việc ma túy?",
+    "expected_answer": "Báo chí cần trích dẫn nguồn rõ ràng và tránh lan truyền thông tin chưa được xác nhận.",
+    "expected_context": ["news-nghe-si-c"],
+    "category": "news",
+    "difficulty": "easy",
+    "should_abstain": false
+  },
+  {
+    "id": "news_04",
+    "question": "Hành vi sử dụng trái phép chất ma túy có thể được xử lý thế nào theo bài báo?",
+    "expected_answer": "Có thể bị xử lý hành chính hoặc áp dụng biện pháp quản lý tùy trường hợp.",
+    "expected_context": ["news-nghe-si-d"],
+    "category": "news",
+    "difficulty": "medium",
+    "should_abstain": false
+  },
+  {
+    "id": "news_05",
+    "question": "Giáo dục phòng chống ma túy cho người trẻ tập trung vào kỹ năng nào?",
+    "expected_answer": "Tập trung vào nhận biết rủi ro, kỹ năng từ chối và tìm kiếm hỗ trợ từ gia đình, nhà trường và cơ quan chức năng.",
+    "expected_context": ["news-nghe-si-e"],
+    "category": "news",
+    "difficulty": "medium",
+    "should_abstain": false
+  },
+  {
+    "id": "mixed_01",
+    "question": "Tại sao hệ thống cần kết hợp BM25 với tìm kiếm ngữ nghĩa khi hỏi về Nghị định 105/2021?",
+    "expected_answer": "BM25 bắt chính xác số hiệu 105/2021, còn tìm kiếm ngữ nghĩa bắt được ý hướng dẫn thi hành và quản lý người sử dụng.",
+    "expected_context": ["nghi-dinh-105-2021"],
+    "category": "mixed",
+    "difficulty": "hard",
+    "should_abstain": false
+  },
+  {
+    "id": "mixed_02",
+    "question": "Nguồn pháp luật và báo chí cùng nhấn mạnh nguyên tắc nào khi trả lời về vụ việc ma túy?",
+    "expected_answer": "Cần dựa trên nguồn và chứng cứ rõ ràng, không suy đoán hoặc đưa thông tin chưa được xác nhận.",
+    "expected_context": ["luat-phong-chong-ma-tuy-2021", "news-nghe-si-c"],
+    "category": "mixed",
+    "difficulty": "hard",
+    "should_abstain": false
+  },
+  {
+    "id": "exact_01",
+    "question": "Tìm tài liệu có số hiệu 105/2021/NĐ-CP.",
+    "expected_answer": "Tài liệu cần tìm là Nghị định 105/2021/NĐ-CP.",
+    "expected_context": ["nghi-dinh-105-2021"],
+    "category": "exact_term",
+    "difficulty": "medium",
+    "should_abstain": false
+  },
+  {
+    "id": "abstain_01",
+    "question": "Mức án chính xác của nghệ sĩ A là bao nhiêu năm tù?",
+    "expected_answer": "Không có đủ thông tin để xác minh mức án.",
+    "expected_context": [],
+    "category": "abstention",
+    "difficulty": "hard",
+    "should_abstain": true
+  },
+  {
+    "id": "abstain_02",
+    "question": "Địa chỉ nhà riêng của nghệ sĩ A là gì?",
+    "expected_answer": "Không có thông tin và không nên cung cấp dữ liệu cá nhân.",
+    "expected_context": [],
+    "category": "abstention",
+    "difficulty": "hard",
+    "should_abstain": true
   }
 ]

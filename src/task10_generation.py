@@ -1,201 +1,130 @@
-"""
-Task 10 — Generation Có Citation.
+"""Task 10: grounded generation with citation."""
 
-Hướng dẫn:
-    1. Chọn top_k, top_p phù hợp (giải thích lý do)
-    2. Sắp xếp lại chunks sau reranking để tránh "lost in the middle"
-    3. Inject context vào prompt
-    4. Yêu cầu LLM trả lời có citation
-    5. Nếu không đủ evidence → "I cannot verify this information"
-"""
+from __future__ import annotations
 
 import os
+import re
+
 from dotenv import load_dotenv
+from openai import OpenAI
 
-load_dotenv()
-
+from .rag_utils import citation_for, tokenize
 from .task9_retrieval_pipeline import retrieve
 
+SYSTEM_PROMPT = """Answer only from the provided context.
+Cite sources using [doc_id] when possible.
+If the context is insufficient, say 'I cannot verify this information'."""
 
-# =============================================================================
-# CONFIGURATION — Giải thích lựa chọn
-# =============================================================================
-
-# top_k: Số chunks đưa vào context
-# Chọn 5 vì: đủ evidence mà không quá dài gây lost in the middle
-TOP_K = 5
-
-# top_p (nucleus sampling): Xác suất tích luỹ cho token generation
-# Chọn 0.9 vì: đủ diverse nhưng không quá random
-TOP_P = 0.9
-
-# temperature: Độ ngẫu nhiên của output
-# Chọn 0.3 vì: RAG cần factual, ít sáng tạo
-TEMPERATURE = 0.3
-
-
-# =============================================================================
-# SYSTEM PROMPT
-# =============================================================================
-
-SYSTEM_PROMPT = """Answer the following question comprehensively in Vietnamese.
-For every statement of fact or claim, immediately insert a citation in brackets
-linking to the specific source (e.g., [Luật Phòng chống ma tuý 2021, Điều 3]
-or [VnExpress, 2024]).
-
-If the information is not explicitly stated in the provided context or knowledge
-base, state 'Tôi không thể xác minh thông tin này từ nguồn hiện có' rather than
-guessing.
-
-Rules:
-- Only use information from the provided context
-- Every factual claim MUST have a citation
-- If context is insufficient, say so clearly
-- Structure your answer with clear paragraphs"""
-
-
-# =============================================================================
-# DOCUMENT REORDERING (tránh lost in the middle)
-# =============================================================================
 
 def reorder_for_llm(chunks: list[dict]) -> list[dict]:
+    """Place the strongest chunks near the beginning and end.
+
+    This simple pattern mitigates "lost in the middle" for small contexts:
+    rank 1, 3, 5, ... then ..., 4, 2.
     """
-    Sắp xếp chunks để tránh "lost in the middle" effect.
-
-    LLM nhớ tốt thông tin ở ĐẦU và CUỐI prompt, quên thông tin ở GIỮA.
-    Strategy: đặt chunks quan trọng nhất ở đầu và cuối, kém quan trọng ở giữa.
-
-    Input order (by score):  [1, 2, 3, 4, 5]
-    Output order:            [1, 3, 5, 4, 2]
-    (best first, worst in middle, second-best last)
-
-    Args:
-        chunks: List sorted by score descending (from retrieval)
-
-    Returns:
-        List reordered để maximize LLM attention.
-    """
-    # TODO: Implement reordering
-    #
-    # if len(chunks) <= 2:
-    #     return chunks
-    #
-    # # Split into first half (important → đầu) and second half (important → cuối)
-    # reordered = []
-    # for i in range(0, len(chunks), 2):
-    #     reordered.append(chunks[i])  # Odd positions go first
-    # for i in range(len(chunks) - 1 - (len(chunks) % 2 == 0), 0, -2):
-    #     reordered.append(chunks[i])  # Even positions go last (reversed)
-    #
-    # return reordered
-    raise NotImplementedError("Implement reorder_for_llm")
+    if len(chunks) <= 2:
+        return chunks
+    ordered = sorted(chunks, key=lambda item: item.get("score", 0.0), reverse=True)
+    front = ordered[::2]
+    back = list(reversed(ordered[1::2]))
+    return front + back
 
 
-# =============================================================================
-# CONTEXT FORMATTING
-# =============================================================================
-
-def format_context(chunks: list[dict]) -> str:
-    """
-    Format chunks thành context string cho prompt.
-    Mỗi chunk có label source để LLM có thể cite.
-
-    Args:
-        chunks: List of {'content': str, 'metadata': dict, 'score': float}
-
-    Returns:
-        Formatted context string.
-    """
-    # TODO: Implement context formatting
-    #
-    # context_parts = []
-    # for i, chunk in enumerate(chunks, 1):
-    #     source = chunk.get("metadata", {}).get("source", f"Source {i}")
-    #     doc_type = chunk.get("metadata", {}).get("type", "unknown")
-    #     context_parts.append(
-    #         f"[Document {i} | Source: {source} | Type: {doc_type}]\n"
-    #         f"{chunk['content']}\n"
-    #     )
-    # return "\n---\n".join(context_parts)
-    raise NotImplementedError("Implement format_context")
+def format_context(context_chunks: list[dict]) -> str:
+    blocks = []
+    for idx, chunk in enumerate(context_chunks, start=1):
+        metadata = chunk.get("metadata", {})
+        doc_id = metadata.get("source") or f"doc_{idx}"
+        title = metadata.get("title", "")
+        blocks.append(
+            f"[{doc_id}] title={title} path={metadata.get('path', '')}\n"
+            f"{chunk.get('content', '')}"
+        )
+    return "\n\n---\n\n".join(blocks)
 
 
-# =============================================================================
-# GENERATION
-# =============================================================================
+def _best_sentences(query: str, chunks: list[dict], max_sentences: int = 3) -> list[str]:
+    query_terms = set(tokenize(query))
+    scored = []
+    for idx, chunk in enumerate(chunks, start=1):
+        sentences = re.split(r"(?<=[.!?])\s+", chunk.get("content", ""))
+        for sentence in sentences:
+            clean = sentence.strip()
+            if len(clean) < 30:
+                continue
+            overlap = len(query_terms & set(tokenize(clean)))
+            if overlap:
+                scored.append((overlap, clean, citation_for(chunk, idx)))
+    scored.sort(key=lambda item: item[0], reverse=True)
+    return [f"{sentence} {citation}" for _, sentence, citation in scored[:max_sentences]]
 
-def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
-    """
-    End-to-end RAG generation có citation.
 
-    Pipeline:
-        1. Retrieve relevant chunks
-        2. Reorder để tránh lost in the middle
-        3. Format context với source labels
-        4. Build prompt (system + context + query)
-        5. Call LLM
-        6. Return answer + sources
+def generate_with_citation(query: str, context_chunks: list[dict] | None = None) -> str:
+    # top_k=5 leaves room for instruction, question and output while still
+    # giving enough evidence for citation in this lightweight lab setup.
+    chunks = context_chunks if context_chunks is not None else retrieve(query, top_k=5)
+    chunks = reorder_for_llm(chunks)
+    if not chunks:
+        return "I cannot verify this information"
 
-    Args:
-        query: Câu hỏi của user
+    openai_answer = _openai_generate(query, chunks)
+    if openai_answer:
+        return openai_answer
 
-    Returns:
-        {
-            'answer': str,           # Câu trả lời có citation
-            'sources': list[dict],   # Các chunks đã dùng
-            'retrieval_source': str  # 'hybrid' hoặc 'pageindex'
-        }
-    """
-    # TODO: Implement generation pipeline
-    #
-    # # Step 1: Retrieve
-    # chunks = retrieve(query, top_k=top_k)
-    #
-    # # Step 2: Reorder
-    # reordered = reorder_for_llm(chunks)
-    #
-    # # Step 3: Format context
-    # context = format_context(reordered)
-    #
-    # # Step 4: Build prompt
-    # user_message = f"""Context:\n{context}\n\n---\n\nQuestion: {query}"""
-    #
-    # # Step 5: Call LLM
-    # from openai import OpenAI
-    # client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    #
-    # response = client.chat.completions.create(
-    #     model="gpt-4o-mini",
-    #     messages=[
-    #         {"role": "system", "content": SYSTEM_PROMPT},
-    #         {"role": "user", "content": user_message}
-    #     ],
-    #     temperature=TEMPERATURE,
-    #     top_p=TOP_P,
-    # )
-    #
-    # answer = response.choices[0].message.content
-    #
-    # # Step 6: Return
-    # return {
-    #     "answer": answer,
-    #     "sources": chunks,
-    #     "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none"
-    # }
-    raise NotImplementedError("Implement generate_with_citation")
+    answer_sentences = _best_sentences(query, chunks)
+    if not answer_sentences:
+        return "I cannot verify this information"
+
+    return " ".join(answer_sentences)
+
+
+def _openai_generate(query: str, chunks: list[dict]) -> str | None:
+    """Generate a grounded answer with OpenAI when OPENAI_API_KEY is configured."""
+    load_dotenv()
+    api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    if not api_key:
+        return None
+
+    model = os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini").strip()
+    try:
+        client = OpenAI(api_key=api_key)
+        context = format_context(chunks)
+        response = client.chat.completions.create(
+            model=model,
+            temperature=0.1,
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {
+                    "role": "user",
+                    "content": (
+                        "<context>\n"
+                        f"{context}\n"
+                        "</context>\n\n"
+                        "<question>\n"
+                        f"{query}\n"
+                        "</question>"
+                    ),
+                },
+            ],
+        )
+        answer = response.choices[0].message.content or ""
+        return answer.strip() or None
+    except Exception:
+        return None
+
+
+def answer_question(query: str, top_k: int = 5) -> dict:
+    sources = retrieve(query, top_k=top_k)
+    return {
+        "answer": generate_with_citation(query, sources),
+        "sources": sources,
+        "context": format_context(sources),
+    }
+
+
+def main(query: str = "Luật phòng chống ma túy quy định gì?") -> str:
+    return generate_with_citation(query)
 
 
 if __name__ == "__main__":
-    test_queries = [
-        "Hình phạt cho tội tàng trữ trái phép chất ma tuý theo pháp luật Việt Nam?",
-        "Những nghệ sĩ nào đã bị bắt vì liên quan tới ma tuý?",
-        "Quy trình cai nghiện bắt buộc theo Luật Phòng chống ma tuý 2021?",
-    ]
-
-    for q in test_queries:
-        print(f"\n{'='*70}")
-        print(f"Q: {q}")
-        print("=" * 70)
-        result = generate_with_citation(q)
-        print(f"\nA: {result['answer']}")
-        print(f"\n[Sources: {len(result['sources'])} chunks | via {result['retrieval_source']}]")
+    print(main())

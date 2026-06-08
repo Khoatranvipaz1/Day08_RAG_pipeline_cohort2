@@ -1,0 +1,9 @@
+Luat Phong, chong ma tuy 2021 quy dinh trach nhiem phong ngua, dau tranh voi toi pham ma tuy, quan ly nguoi su dung trai phep chat ma tuy va kiem soat cac hoat dong hop phap lien quan den ma tuy.
+
+Van ban mau nay duoc luu de phuc vu lab RAG Day 08. Noi dung tom tat cac nhom quy dinh quan trong: phong ngua ma tuy trong gia dinh, nha truong va cong dong; phat hien, ngan chan hanh vi san xuat, tang tru, van chuyen, mua ban trai phep chat ma tuy; quan ly nguoi su dung trai phep chat ma tuy; trach nhiem cua co quan nha nuoc trong viec phoi hop, truyen thong va ho tro cai nghien.
+
+Trong pipeline RAG, tai lieu nay dai hon mot kilobyte de dong vai tro nhu file PDF goc. Khi convert sang Markdown, metadata can giu lai source, nam ban hanh, loai tai lieu va duong dan file. Khi chunking, cac doan noi dung ve "phong chong ma tuy", "nguoi su dung trai phep chat ma tuy" va "trach nhiem phoi hop" phai co the duoc truy hoi bang semantic search lan BM25.
+
+Noi dung bo sung: Luat nhan manh viec khong suy dien ngoai chung cu, thong tin lien quan den ma tuy can duoc xu ly theo quy dinh phap luat, va moi cau tra loi trong he thong RAG phai co citation ro rang den tai lieu nguon. Neu context khong du, model phai tu choi xac nhan thong tin thay vi bia dat.
+
+Doan lap lai co chu dich cho test kich thuoc file: phong chong ma tuy, chat ma tuy, quan ly nguoi su dung trai phep chat ma tuy, co quan chuc nang, trach nhiem phoi hop, citation, evidence, grounded answer, retrieval, augmentation, generation.

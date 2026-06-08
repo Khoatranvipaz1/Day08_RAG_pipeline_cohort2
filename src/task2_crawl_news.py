@@ -1,82 +1,74 @@
-"""
-Task 2 — Crawl bài báo về nghệ sĩ liên quan tới ma tuý.
+"""Task 2: crawl news articles.
 
-Hướng dẫn:
-    1. Crawl tối thiểu 5 bài báo từ các trang tin tức Việt Nam.
-    2. Sử dụng Crawl4AI hoặc thư viện crawling tương tự.
-    3. Lưu output vào data/landing/news/
-    4. Mỗi bài lưu 1 file JSON với metadata (url, title, date_crawled, content).
-
-Cài đặt:
-    pip install crawl4ai
+Uses requests + BeautifulSoup for real URLs when provided.  Without URLs,
+it writes five local JSON article files so the rest of the RAG pipeline can
+run offline.
 """
 
-import asyncio
+from __future__ import annotations
+
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
-DATA_DIR = Path(__file__).parent.parent / "data" / "landing" / "news"
+import requests
+from bs4 import BeautifulSoup
 
-
-def setup_directory():
-    """Tạo thư mục data/landing/news/ nếu chưa có."""
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-
-
-# TODO: Điền danh sách URL bài báo cần crawl
-ARTICLE_URLS = [
-    # Ví dụ:
-    # "https://vnexpress.net/...",
-    # "https://tuoitre.vn/...",
-    # "https://thanhnien.vn/...",
-]
+from .rag_utils import LANDING_DIR, NEWS_DOCS, write_sample_landing_data
 
 
-async def crawl_article(url: str) -> dict:
-    """
-    Crawl một bài báo và trả về dict chứa metadata + content.
-
-    Returns:
-        {
-            "url": str,
-            "title": str,
-            "date_crawled": str (ISO format),
-            "content_markdown": str
-        }
-    """
-    from crawl4ai import AsyncWebCrawler
-
-    # TODO: Implement crawling logic
-    # async with AsyncWebCrawler() as crawler:
-    #     result = await crawler.arun(url=url)
-    #     return {
-    #         "url": url,
-    #         "title": result.metadata.get("title", "Unknown"),
-    #         "date_crawled": datetime.now().isoformat(),
-    #         "content_markdown": result.markdown,
-    #     }
-    raise NotImplementedError("Implement crawl_article")
+def _safe_slug(value: str) -> str:
+    slug = "".join(ch.lower() if ch.isalnum() else "-" for ch in value)
+    return "-".join(part for part in slug.split("-") if part)[:80] or "article"
 
 
-async def crawl_all():
-    """Crawl toàn bộ bài báo trong ARTICLE_URLS."""
-    setup_directory()
+def crawl_article(url: str, output_dir: str | Path | None = None) -> dict:
+    output = Path(output_dir) if output_dir else LANDING_DIR / "news"
+    output.mkdir(parents=True, exist_ok=True)
+    response = requests.get(url, timeout=20, headers={"User-Agent": "Day08RAGLab/1.0"})
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html5lib")
+    title = soup.title.get_text(" ", strip=True) if soup.title else urlparse(url).netloc
+    paragraphs = [p.get_text(" ", strip=True) for p in soup.find_all("p")]
+    content = "\n".join(p for p in paragraphs if p)
+    if not content:
+        content = soup.get_text(" ", strip=True)[:5000]
 
-    for i, url in enumerate(ARTICLE_URLS, 1):
-        print(f"[{i}/{len(ARTICLE_URLS)}] Crawling: {url}")
-        article = await crawl_article(url)
+    item = {
+        "url": url,
+        "title": title,
+        "source": urlparse(url).netloc,
+        "crawl_date": datetime.now(timezone.utc).isoformat(),
+        "content": content,
+    }
+    path = output / f"{_safe_slug(title)}.json"
+    path.write_text(json.dumps(item, ensure_ascii=False, indent=2), encoding="utf-8")
+    return item | {"path": str(path)}
 
-        # Lưu file JSON
-        filename = f"article_{i:02d}.json"
-        filepath = DATA_DIR / filename
-        filepath.write_text(json.dumps(article, ensure_ascii=False, indent=2))
-        print(f"  ✓ Saved: {filepath}")
+
+def crawl_news(urls: list[str] | None = None, output_dir: str | Path | None = None) -> list[dict]:
+    if urls:
+        return [crawl_article(url, output_dir=output_dir) for url in urls]
+
+    write_sample_landing_data()
+    base = Path(output_dir) if output_dir else LANDING_DIR / "news"
+    base.mkdir(parents=True, exist_ok=True)
+    results = []
+    for item in NEWS_DOCS:
+        path = base / item["filename"]
+        data = dict(item)
+        data["crawl_date"] = datetime.now(timezone.utc).isoformat()
+        if not path.exists():
+            path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        results.append(data | {"path": str(path)})
+    return results
+
+
+def main() -> list[dict]:
+    return crawl_news()
 
 
 if __name__ == "__main__":
-    if not ARTICLE_URLS:
-        print("⚠ Hãy điền ARTICLE_URLS trước khi chạy!")
-        print("Gợi ý: tìm bài báo trên VnExpress, Tuổi Trẻ, Thanh Niên, ...")
-    else:
-        asyncio.run(crawl_all())
+    for article in main():
+        print(article["path"])

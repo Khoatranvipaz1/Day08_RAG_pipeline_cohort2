@@ -1,0 +1,7 @@
+{
+  "url": "https://example.com/news-e",
+  "title": "Giao duc phong chong ma tuy cho nguoi tre",
+  "source": "BaoDemo",
+  "crawl_date": "2026-06-08T00:00:00Z",
+  "content": "Chuong trinh giao duc phong chong ma tuy tap trung vao nhan biet rui ro, ky nang tu choi va tim kiem ho tro tu gia dinh, nha truong va co quan chuc nang. Bai viet nay duoc dung de test cac cau hoi ve phong ngua va giao duc cong dong. Trong pipeline hybrid, semantic search bat duoc y giao duc phong chong, BM25 bat duoc tu khoa gia dinh, nha truong, co quan chuc nang. Cac metric RAGAS nhu context recall va answer relevance giup danh gia retriever co lay dung evidence cho nhom cau hoi nay hay khong."
+}

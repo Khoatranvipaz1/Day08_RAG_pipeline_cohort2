@@ -1,0 +1,7 @@
+{
+  "url": "https://example.com/news-a",
+  "title": "Nghe si A bi dieu tra vi lien quan ma tuy",
+  "source": "BaoDemo",
+  "crawl_date": "2026-06-08T00:00:00Z",
+  "content": "Mot nghe si Viet Nam bi co quan chuc nang dieu tra sau khi co dau hieu lien quan den ma tuy. Thong tin can duoc kiem chung tu nguon chinh thuc. Bai viet mau nay duoc tao cho lab RAG, nhan manh rang cac he thong hoi dap khong nen suy dien danh tinh, hanh vi hoac ket luan phap ly neu context khong neu ro. Khi crawl tin tuc, can luu URL goc, tieu de, nguon bao, ngay crawl va noi dung chinh. Trong evaluation, cau hoi ve bai bao nay co the dung de kiem tra faithfulness va citation coverage. Neu nguoi dung hoi thong tin vuot qua noi dung bai bao, assistant phai noi khong the xac minh thay vi bia dat."
+}

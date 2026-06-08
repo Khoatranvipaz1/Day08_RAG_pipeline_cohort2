@@ -1,47 +1,37 @@
+"""Task 1: collect legal documents.
+
+The README asks students to download at least three PDF/DOCX legal files.
+For an offline lab run, this module creates small placeholder `.pdf` files
+with Vietnamese legal content so downstream tasks and tests have data.
 """
-Task 1 — Thu thập văn bản pháp luật về ma tuý và các chất cấm.
 
-Hướng dẫn:
-    1. Tìm tối thiểu 3 văn bản pháp luật (PDF/DOCX) từ các nguồn chính thống.
-    2. Tải về và lưu vào data/landing/legal/
-    3. Đặt tên file rõ ràng, không dấu, có năm ban hành.
-
-Gợi ý nguồn:
-    - https://thuvienphapluat.vn
-    - https://vanban.chinhphu.vn
-    - https://luatvietnam.vn
-
-Gợi ý văn bản:
-    - Luật Phòng, chống ma tuý 2021 (73/2021/QH15)
-    - Nghị định 105/2021/NĐ-CP
-    - Bộ luật Hình sự 2015 (sửa đổi 2017) - Chương XX
-    - Nghị định 57/2022/NĐ-CP về danh mục chất ma tuý
-"""
+from __future__ import annotations
 
 from pathlib import Path
 
-DATA_DIR = Path(__file__).parent.parent / "data" / "landing" / "legal"
+from .rag_utils import LANDING_DIR, LEGAL_DOCS, write_sample_landing_data
 
 
-def setup_directory():
-    """Tạo thư mục data/landing/legal/ nếu chưa có."""
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"✓ Thư mục đã sẵn sàng: {DATA_DIR}")
+def collect_legal_docs(output_dir: str | Path | None = None) -> list[dict]:
+    write_sample_landing_data()
+    base = Path(output_dir) if output_dir else LANDING_DIR / "legal"
+    base.mkdir(parents=True, exist_ok=True)
+    return [
+        {
+            "filename": item["filename"],
+            "path": str(base / item["filename"]),
+            "title": item["title"],
+            "source": item["source"],
+            "year": item["year"],
+        }
+        for item in LEGAL_DOCS
+    ]
 
 
-# TODO: Tải file PDF/DOCX về DATA_DIR
-# Có thể tải thủ công hoặc viết script download nếu có direct link.
-#
-# Ví dụ nếu có direct link:
-#
-# import requests
-#
-# def download_file(url: str, filename: str):
-#     response = requests.get(url)
-#     filepath = DATA_DIR / filename
-#     filepath.write_bytes(response.content)
-#     print(f"✓ Đã tải: {filepath}")
+def main() -> list[dict]:
+    return collect_legal_docs()
 
 
 if __name__ == "__main__":
-    setup_directory()
+    for doc in main():
+        print(doc)

@@ -1,66 +1,113 @@
-"""
-Task 5 — Semantic Search Module.
+"""Task 5: semantic search module.
 
-Viết module tìm kiếm ngữ nghĩa (dense retrieval) trên vector store.
-
-Yêu cầu:
-    - Input: query string + top_k
-    - Output: danh sách chunks có score, sorted descending
-    - Phải tương thích với embedding model và vector store ở Task 4
+Lightweight implementation: TF-IDF cosine similarity stands in for dense
+embeddings when local transformer models are not installed.
 """
+
+from __future__ import annotations
+
+import os
+
+import requests
+from dotenv import load_dotenv
+from sklearn.metrics.pairwise import cosine_similarity
+
+from .task4_chunking_indexing import build_vector_index, embed_texts_openai
 
 
 def semantic_search(query: str, top_k: int = 10) -> list[dict]:
-    """
-    Tìm kiếm ngữ nghĩa sử dụng vector similarity.
+    if not query.strip():
+        return []
+    if os.getenv("USE_WEAVIATE", "").lower() == "true":
+        cloud_results = weaviate_search(query, top_k=top_k)
+        if cloud_results:
+            return cloud_results
 
-    Args:
-        query: Câu truy vấn
-        top_k: Số lượng kết quả tối đa
+    index = build_vector_index()
+    chunks = index["chunks"]
+    if not chunks or index["matrix"] is None:
+        return []
 
-    Returns:
-        List of {
-            'content': str,      # Nội dung chunk
-            'score': float,      # Cosine similarity score
-            'metadata': dict     # source, doc_type, chunk_index
+    query_vec = index["vectorizer"].transform([query])
+    scores = cosine_similarity(query_vec, index["matrix"]).ravel()
+    ranked = sorted(enumerate(scores), key=lambda item: item[1], reverse=True)[:top_k]
+    results = []
+    for idx, score in ranked:
+        chunk = chunks[idx]
+        results.append(
+            {
+                "content": chunk["content"],
+                "score": float(score),
+                "metadata": dict(chunk.get("metadata", {})) | {"retriever": "tfidf_semantic"},
+            }
+        )
+    return results
+
+
+def weaviate_search(query: str, top_k: int = 10, class_name: str = "Day08Chunk") -> list[dict]:
+    load_dotenv()
+    url = os.getenv("WEAVIATE_URL", "").strip().rstrip("/")
+    api_key = os.getenv("WEAVIATE_API_KEY", "").strip()
+    if not url:
+        return []
+
+    headers = {"Content-Type": "application/json"}
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+
+    try:
+        query_vector = embed_texts_openai([query])[0]
+        graphql = {
+            "query": f"""
+            {{
+              Get {{
+                {class_name}(nearVector: {{vector: {query_vector}}}, limit: {int(top_k)}) {{
+                  content
+                  source
+                  title
+                  path
+                  doc_type
+                  chunk_id
+                  _additional {{ certainty distance }}
+                }}
+              }}
+            }}
+            """
         }
-        Sorted by score descending.
-    """
-    # TODO: Implement semantic search
-    #
-    # Bước 1: Embed query bằng cùng model ở Task 4
-    # Bước 2: Query vector store (cosine similarity)
-    # Bước 3: Return top_k results
-    #
-    # Ví dụ với Weaviate:
-    # import weaviate
-    # from sentence_transformers import SentenceTransformer
-    #
-    # model = SentenceTransformer("BAAI/bge-m3")
-    # query_embedding = model.encode(query).tolist()
-    #
-    # client = weaviate.connect_to_local()
-    # collection = client.collections.get("DrugLawDocs")
-    #
-    # results = collection.query.near_vector(
-    #     near_vector=query_embedding,
-    #     limit=top_k,
-    #     return_metadata=MetadataQuery(distance=True)
-    # )
-    #
-    # return [
-    #     {
-    #         "content": obj.properties["content"],
-    #         "score": 1 - obj.metadata.distance,  # distance → similarity
-    #         "metadata": {"source": obj.properties["source"], ...}
-    #     }
-    #     for obj in results.objects
-    # ]
-    raise NotImplementedError("Implement semantic_search")
+        response = requests.post(f"{url}/v1/graphql", headers=headers, json=graphql, timeout=30)
+        if response.status_code != 200:
+            return []
+        objects = response.json().get("data", {}).get("Get", {}).get(class_name, [])
+        results = []
+        for obj in objects:
+            additional = obj.get("_additional", {})
+            score = additional.get("certainty")
+            if score is None:
+                distance = float(additional.get("distance", 1.0))
+                score = max(0.0, 1.0 - distance)
+            results.append(
+                {
+                    "content": obj.get("content", ""),
+                    "score": float(score),
+                    "metadata": {
+                        "source": obj.get("source", ""),
+                        "title": obj.get("title", ""),
+                        "path": obj.get("path", ""),
+                        "doc_type": obj.get("doc_type", ""),
+                        "chunk_id": obj.get("chunk_id", ""),
+                        "retriever": "weaviate_openai",
+                    },
+                }
+            )
+        return sorted(results, key=lambda item: item["score"], reverse=True)
+    except Exception:
+        return []
+
+
+def main(query: str = "Luật phòng chống ma túy quy định gì?", top_k: int = 5) -> list[dict]:
+    return semantic_search(query, top_k=top_k)
 
 
 if __name__ == "__main__":
-    # Test
-    results = semantic_search("hình phạt cho tội tàng trữ ma tuý", top_k=5)
-    for r in results:
-        print(f"[{r['score']:.3f}] {r['content'][:100]}...")
+    for item in main():
+        print(item["score"], item["metadata"].get("source"))

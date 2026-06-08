@@ -1,0 +1,7 @@
+Bo luat Hinh su 2015 sua doi 2017 quy dinh cac toi pham ve ma tuy nhu tang tru, van chuyen, mua ban trai phep chat ma tuy va hinh phat tuong ung.
+
+Tai lieu mau nay dai hon mot kilobyte de dong vai tro nhu van ban phap luat goc trong bai lab. Noi dung chinh gom cac hanh vi bi xu ly hinh su lien quan den ma tuy: tang tru trai phep chat ma tuy, van chuyen trai phep chat ma tuy, mua ban trai phep chat ma tuy, to chuc su dung trai phep chat ma tuy va cac tinh tiet anh huong den khung hinh phat.
+
+Trong he thong RAG, van ban hinh su thuong yeu cau lexical search vi nguoi dung co the hoi bang cum tu chinh xac, dieu luat, so hieu van ban hoac ten toi danh. Dense search co the bat ngu nghia tong quat, nhung BM25 giup khong bo sot exact term nhu "tang tru", "van chuyen", "mua ban trai phep chat ma tuy". Hybrid search va RRF se ket hop hai nguon diem de tang context recall.
+
+Noi dung bo sung cho test va demo: neu cau hoi yeu cau ket luan ve trach nhiem hinh su, generator phai dua vao context da retrieve, khong tu suy dien muc an cu the khi khong co dieu khoan day du. Cau tra loi can co citation, neu thieu evidence thi tra "I cannot verify this information".

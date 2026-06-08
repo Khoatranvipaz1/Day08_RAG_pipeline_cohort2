@@ -1,0 +1,7 @@
+{
+  "url": "https://example.com/news-c",
+  "title": "Vu viec ma tuy va trach nhiem truyen thong",
+  "source": "BaoDemo",
+  "crawl_date": "2026-06-08T00:00:00Z",
+  "content": "Bao chi can trich dan nguon ro rang khi dua tin ve cac vu viec lien quan den ma tuy va tranh lan truyen thong tin chua duoc xac nhan. Bai viet nay phu hop de test grounding va abstention trong pipeline RAG. Neu context chi noi ve trach nhiem truyen thong, assistant khong duoc tu bo sung ten nguoi, ket qua dieu tra hoac muc xu phat. Metadata cua bai bao gom URL, title, source va crawl_date de co the hien thi trong chatbot. Evaluation co the dung cau hoi nay de do answer relevance va faithfulness."
+}
